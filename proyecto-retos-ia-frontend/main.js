@@ -142,6 +142,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
     listaEl.appendChild(div);
   }
+  async function listarRetos() {
+  const res = await fetch(window.API_BASE);
+  const data = await res.json();
+
+  const categoria = document.getElementById("f_categoria").value.toLowerCase();
+  const dificultad = document.getElementById("f_dificultad").value.toLowerCase();
+
+  let filtrados = data;
+
+  if (categoria) {
+    filtrados = filtrados.filter(r => r.categoria.toLowerCase().includes(categoria));
+  }
+
+  if (dificultad) {
+    filtrados = filtrados.filter(r => r.dificultad.toLowerCase() === dificultad);
+  }
+
+  renderRetos(filtrados);
+}
+
+function renderRetos(retos) {
+  const lista = document.getElementById("listaRetos");
+  lista.innerHTML = "";
+
+  if (retos.length === 0) {
+    lista.innerHTML = `<p class="mensaje">No se encontraron retos</p>`;
+    return;
+  }
+
+  retos.forEach(r => {
+    const div = document.createElement("div");
+    div.className = "reto";
+    div.innerHTML = `
+      <h3>${r.titulo}</h3>
+      <p>${r.descripcion}</p>
+      <p><strong>Categoría:</strong> ${r.categoria}</p>
+      <p><strong>Dificultad:</strong> ${r.dificultad}</p>
+      <div class="acciones">
+        <a href="editar.html?id=${r.id}" class="btn-secondary">Editar</a>
+        <button onclick="eliminarReto(${r.id})" class="btn-secondary">Eliminar</button>
+      </div>
+    `;
+    lista.appendChild(div);
+  });
+}
+
+async function eliminarReto(id) {
+  if (!confirm("¿Eliminar este reto?")) return;
+  const res = await fetch(`${window.API_BASE}/${id}`, { method: "DELETE" });
+  if (res.ok) listarRetos();
+}
+
+document.getElementById("btnFiltrar").addEventListener("click", listarRetos);
+document.getElementById("btnReset").addEventListener("click", () => {
+  document.getElementById("f_categoria").value = "";
+  document.getElementById("f_dificultad").value = "";
+  listarRetos();
+});
+
+listarRetos();
 
   function escapeHtml(str = '') {
     return String(str)

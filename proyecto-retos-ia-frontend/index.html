@@ -1,62 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Retos IA — Frontend</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestor de Retos</title>
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    window.API_BASE = "http://localhost:5000/api/retos";
+  </script>
 </head>
 <body>
   <header>
-    <h1>Tablero — Retos IA</h1>
+    <h1>🚀 Gestor de Retos</h1>
   </header>
-  <main>
-    <section class="form-section">
-      <h2>Crear nuevo reto</h2>
-      <form id="retoForm">
-        <label>Título<input type="text" id="titulo" required /></label>
-        <label>Descripción<textarea id="descripcion" required></textarea></label>
-        <label>Categoría<input type="text" id="categoria" required placeholder="ej: salud, educación..." /></label>
-        <label>Dificultad
-          <select id="dificultad">
-            <option value="bajo">Bajo</option>
-            <option value="medio" selected>Medio</option>
-            <option value="alto">Alto</option>
-          </select>
-        </label>
-        <button type="submit">Crear Reto</button>
-      </form>
-      <div id="mensaje" class="mensaje"></div>
-    </section>
 
-    <section class="filter-section">
-      <h2>Filtros</h2>
-      <label>Categoría <input type="text" id="f_categoria" placeholder="dejar vacío para todos" /></label>
-      <label>Dificultad
+  <main class="container">
+    <!-- FILTROS -->
+    <section class="filter-section card">
+      <h2>🔍 Filtrar</h2>
+      <div class="form-grid">
+        <input type="text" id="f_categoria" placeholder="Categoría" />
         <select id="f_dificultad">
-          <option value="">Todos</option>
-          <option value="bajo">Bajo</option>
-          <option value="medio">Medio</option>
-          <option value="alto">Alto</option>
+          <option value="">Todas</option>
+          <option value="fácil">Fácil</option>
+          <option value="media">Media</option>
+          <option value="difícil">Difícil</option>
         </select>
-      </label>
-      <button id="btnFiltrar">Aplicar filtros</button>
-      <button id="btnReset">Reset</button>
+        <button id="btnFiltrar" class="btn-primary">Filtrar</button>
+        <button id="btnReset" class="btn-secondary">Reset</button>
+      </div>
     </section>
 
+    <!-- BOTÓN CREAR -->
+    <div style="text-align: right; margin-bottom: 1rem;">
+      <a href="crear.html" class="btn-primary">➕ Nuevo Reto</a>
+    </div>
+
+    <!-- LISTA DE RETOS -->
     <section>
-      <h2>Lista de retos</h2>
-      <div id="listaRetos" class="lista-retos">Cargando...</div>
+      <h2>📌 Lista de Retos</h2>
+      <div id="listaRetos" class="retos-grid"></div>
     </section>
   </main>
+
   <footer>
-    <small>Hecho con Flask (API) + Frontend estático</small>
+    <p>© 2025 Gestor de Retos - Desarrollado Por Lizardo Perez</p>
   </footer>
 
-  <!-- Ajusta esta URL si tu API corre en otro host/puerto -->
-  <script>
-    window.API_BASE = 'http://127.0.0.1:5000/api/retos';
-  </script>
   <script src="main.js"></script>
 </body>
 </html>

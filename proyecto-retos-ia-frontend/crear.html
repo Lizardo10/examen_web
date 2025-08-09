@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crear Reto</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    window.API_BASE = "http://localhost:5000/api/retos";
+  </script>
+</head>
+<body>
+  <header>
+    <h1>➕ Nuevo Reto</h1>
+  </header>
+
+  <main class="container">
+    <section class="form-section card">
+      <form id="retoForm" class="form-grid">
+        <input type="text" id="titulo" placeholder="Título" required />
+        <textarea id="descripcion" placeholder="Descripción" required></textarea>
+        <input type="text" id="categoria" placeholder="Categoría" required />
+        <select id="dificultad" required>
+          <option value="">Dificultad</option>
+          <option value="bajo">Bajo</option>
+          <option value="medio">Medio</option>
+          <option value="alto">Alto</option>
+        </select>
+        <button type="submit" class="btn-primary">Crear</button>
+      </form>
+      <p id="mensaje" class="mensaje"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Gestor de Retos</p>
+  </footer>
+
+  <script>
+    document.getElementById("retoForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        titulo: document.getElementById("titulo").value,
+        descripcion: document.getElementById("descripcion").value,
+        categoria: document.getElementById("categoria").value,
+        dificultad: document.getElementById("dificultad").value
+      };
+
+      const res = await fetch(window.API_BASE, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("mensaje").textContent = "❌ Error al crear reto.";
+      }
+    });
+  </script>
+</body>
+</html>
