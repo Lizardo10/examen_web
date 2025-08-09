@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Retos IA — Frontend</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Tablero — Retos IA</h1>
+  </header>
+  <main>
+    <section class="form-section">
+      <h2>Crear nuevo reto</h2>
+      <form id="retoForm">
+        <label>Título<input type="text" id="titulo" required /></label>
+        <label>Descripción<textarea id="descripcion" required></textarea></label>
+        <label>Categoría<input type="text" id="categoria" required placeholder="ej: salud, educación..." /></label>
+        <label>Dificultad
+          <select id="dificultad">
+            <option value="bajo">Bajo</option>
+            <option value="medio" selected>Medio</option>
+            <option value="alto">Alto</option>
+          </select>
+        </label>
+        <button type="submit">Crear Reto</button>
+      </form>
+      <div id="mensaje" class="mensaje"></div>
+    </section>
+
+    <section class="filter-section">
+      <h2>Filtros</h2>
+      <label>Categoría <input type="text" id="f_categoria" placeholder="dejar vacío para todos" /></label>
+      <label>Dificultad
+        <select id="f_dificultad">
+          <option value="">Todos</option>
+          <option value="bajo">Bajo</option>
+          <option value="medio">Medio</option>
+          <option value="alto">Alto</option>
+        </select>
+      </label>
+      <button id="btnFiltrar">Aplicar filtros</button>
+      <button id="btnReset">Reset</button>
+    </section>
+
+    <section>
+      <h2>Lista de retos</h2>
+      <div id="listaRetos" class="lista-retos">Cargando...</div>
+    </section>
+  </main>
+  <footer>
+    <small>Hecho con Flask (API) + Frontend estático</small>
+  </footer>
+
+  <!-- Ajusta esta URL si tu API corre en otro host/puerto -->
+  <script>
+    window.API_BASE = 'http://127.0.0.1:5000/api/retos';
+  </script>
+  <script src="main.js"></script>
+</body>
+</html>
