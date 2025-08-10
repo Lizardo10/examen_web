@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gestor de Retos</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script>
-    window.API_BASE = "http://localhost:5000/api/retos";
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero de Retos</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <h1>🚀 Gestor de Retos</h1>
-  </header>
+    <div class="container">
+        <header>
+            <h1>Tablero Interactivo de Retos</h1>
+        </header>
 
-  <main class="container">
-    <!-- FILTROS -->
-    <section class="filter-section card">
-      <h2>🔍 Filtrar</h2>
-      <div class="form-grid">
-        <input type="text" id="f_categoria" placeholder="Categoría" />
-        <select id="f_dificultad">
-          <option value="">Todas</option>
-          <option value="fácil">Fácil</option>
-          <option value="media">Media</option>
-          <option value="difícil">Difícil</option>
-        </select>
-        <button id="btnFiltrar" class="btn-primary">Filtrar</button>
-        <button id="btnReset" class="btn-secondary">Reset</button>
-      </div>
-    </section>
+        <main>
+            <section class="filtros-container">
+                <h2>Filtros y Acciones</h2>
+                <div class="filtros">
+                    <select id="filtro-categoria">
+                        <option value="">-- Todas las categorías --</option>
+                        <option value="salud">Salud</option>
+                        <option value="educacion">Educación</option>
+                        <option value="negocios">Negocios</option>
+                        <option value="arte">Arte</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                    <select id="filtro-dificultad">
+                        <option value="">-- Todas las dificultades --</option>
+                        <option value="bajo">Bajo</option>
+                        <option value="medio">Medio</option>
+                        <option value="alto">Alto</option>
+                    </select>
+                    <button id="btn-filtrar">Filtrar</button>
+                    <button id="btn-limpiar-filtros">Limpiar</button>
+                </div>
+                <div class="acciones-principales" style="margin-top: 20px;">
+                    <a href="crear.html" class="btn-crear">Crear Nuevo Reto</a>
+                </div>
+            </section>
 
-    <!-- BOTÓN CREAR -->
-    <div style="text-align: right; margin-bottom: 1rem;">
-      <a href="crear.html" class="btn-primary">➕ Nuevo Reto</a>
+            <section class="retos-container">
+                <h2>Lista de Retos</h2>
+                <div id="lista-retos">
+                    <!-- Los retos se cargarán aquí dinámicamente -->
+                </div>
+            </section>
+        </main>
     </div>
 
-    <!-- LISTA DE RETOS -->
-    <section>
-      <h2>📌 Lista de Retos</h2>
-      <div id="listaRetos" class="retos-grid"></div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Gestor de Retos - Desarrollado Por Lizardo Perez</p>
-  </footer>
-
-  <script src="main.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

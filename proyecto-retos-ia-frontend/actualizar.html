@@ -3,39 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Nuevo Reto - Tablero de IA</title>
+    <title>Actualizar Reto - Tablero de IA</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
             <a href="index.html" class="btn-volver">← Volver</a>
-            <h1>Crear Nuevo Reto</h1>
+            <h1>Actualizar Reto</h1>
         </header>
         <main>
             <section class="form-container">
-                <form id="form-crear-reto">
-                    <input type="text" id="titulo" placeholder="Título del reto" required>
-                    <textarea id="descripcion" placeholder="Descripción corta" required></textarea>
+                <form id="form-actualizar-reto">
+                    <input type="hidden" id="reto-id">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" required>
+                    
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" required></textarea>
+                    
+                    <label for="categoria">Categoría</label>
                     <select id="categoria" required>
-                        <option value="">-- Selecciona una categoría --</option>
                         <option value="salud">Salud</option>
                         <option value="educacion">Educación</option>
                         <option value="negocios">Negocios</option>
                         <option value="arte">Arte</option>
                         <option value="otro">Otro</option>
                     </select>
+                    
+                    <label for="dificultad">Dificultad</label>
                     <select id="dificultad" required>
-                        <option value="">-- Selecciona la dificultad --</option>
                         <option value="bajo">Bajo</option>
                         <option value="medio">Medio</option>
                         <option value="alto">Alto</option>
                     </select>
-                    <button type="submit">Crear Reto</button>
+
+                    <label for="estado">Estado</label>
+                    <select id="estado" required>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="en proceso">En Proceso</option>
+                        <option value="completado">Completado</option>
+                    </select>
+                    
+                    <button type="submit">Guardar Cambios</button>
                 </form>
             </section>
         </main>
     </div>
-    <script src="js/crear.js"></script>
+    <script src="js/actualizar.js"></script>
 </body>
 </html>
